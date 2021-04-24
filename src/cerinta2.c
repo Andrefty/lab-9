@@ -25,7 +25,6 @@ DijkstraPath* Dijkstra(Graph *g, int source){
  *         fisierul de output este deschis 
  * @retval None
  */
-// ALEGETI SI VOI O LIMBA :))
 void printPath(int *vectorPath, int index, int *vector_precedesori, int destinatie, FILE *output) {
    
 }

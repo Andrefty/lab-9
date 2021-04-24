@@ -23,8 +23,6 @@ int leftChild(MinHeap *, int );
 int rightChild(MinHeap *, int );
 HeapNode* returnRoot(MinHeap *);
 void heapify(MinHeap *, int);
-void insertSwapSliding(MinHeap *, HeapNode *);
-void insertSwap(MinHeap *, HeapNode *);
 void insert(MinHeap *, HeapNode *);
 void resize(MinHeap *);
 void deleteMinHeap(MinHeap **);

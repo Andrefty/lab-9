@@ -92,19 +92,6 @@ void resize(MinHeap *heap) {
  * @retval None
  */
  
-
-void insertSwapSliding(MinHeap *heap, HeapNode *x){
-	
-}
-
-
-
-void insertSwap(MinHeap *heap, HeapNode *x){
-
-}
-
-
-// It was working :))
 void insert(MinHeap *heap, HeapNode *x){
 
 }
@@ -128,7 +115,7 @@ void deleteMinHeap(MinHeap **heap){
  * @retval None
  */
 void printHeap(MinHeap *heap){
-
+	//nice to have
 }
 /**
  * TODO: Implementati functia de stergere a radacinii

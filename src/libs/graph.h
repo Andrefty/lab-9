@@ -22,6 +22,5 @@ Graph* createGraph(FILE *);
 void printMat(Graph *);
 DijkstraPath* Dijkstra(Graph *, int);
 void printPath(int *, int, int *, int, FILE *);
-void vectorInit(int *, int , int );
 int** Floyd_Warshall(Graph *);
 #endif

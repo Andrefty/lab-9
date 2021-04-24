@@ -2,9 +2,9 @@ CXX = g++
 CXXFLAGS = -g -Wall
 FLAGS = -g -Wall -o
 ifeq ($(OS), Windows_NT)
-    SHARED-LIB = lab09.dll
+    SHARED-LIB = lab-09.dll
 else
-    SHARED-LIB = lab09.so
+    SHARED-LIB = lab-09.so
 endif
 TESTS_PATH = ../tests/
 EXECUTABLE = main

@@ -18,7 +18,11 @@
     - Comanda **make single-run** va rula main-ul.
     - Comanda **make test-heap** va rula testul pentru **heap.c**.
     - Testul pentru **cerinta 2** va rula automat si testul pentru **heap.c**.
-
+    - Pentru debug pe testul de heap, exista in folderul tests fisierul "heap_debug.txt" verificarile pentru fiecare insert si delete pana la primul mismatch.
+  - **implementare**
+    - Vectorul poz va fi initializat cu -1 pe intreaga capacitate, iar la structura DijkstraPath , vectorul pred trebuie initializat tot cu -1.
+    - La deleteNode, dupa ce se elimina radacina, trebuie actualizata pozitia din vectorul poz cu -1.
+    - In header-ul "graph.h" au fost definite valorile INF_MAX si INF_MIN pe care le puteti utiliza daca aveti nevoie in implementare.
 ## Structuri folosite:
 ```c
 //graph.h

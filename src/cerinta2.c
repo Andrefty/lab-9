@@ -1,11 +1,6 @@
 #include "graph.h"
 #include "heap.h"
 
-void vectorInit(int *vec, int len, int value)
-{
-
-}
-
 
 /**
  * TODO:   Implementati Algoritmul Dijkstra folosindu-va de MinHeap-ul creat in fisierul heap.c
@@ -15,17 +10,6 @@ void vectorInit(int *vec, int len, int value)
  */
 
 DijkstraPath* Dijkstra(Graph *g, int source){
-
-}
-
-/**
- * TODO:   Implementati Algoritmul Dijkstra folosindu-va de MinHeap-ul creat in fisierul heap.c
- * @param  g: graful dat
- * @param source : varful sursa pentru care se aplica algoritmul
- * @retval None
- */
-
-DijkstraPath* DijkstraOneAtATime(Graph *g, int source){
 
 }
 

@@ -2,8 +2,6 @@
     lab-09: Grafuri - Drumuri de cost minim
   </h1>
 
-## Structuri:
-
 ## Cerinte:
 1. Implementati o functie care creeaza si populeaza cu date un graf pe baza unei matrice de adiacenta.
 2. Implementati algoritmul Dijkstra folosindu-va de minHeap si de structura DijkstraPath (pentru instantierea & popularea vectorului de distante/predecesori).

@@ -8,7 +8,7 @@
 3. Implementati algoritmul Floyd-Warshall. (Complexitate O(n³))
 
 #### Puteti afla mai multe legat de modul de lucru [aici](https://github.com/sda-ab/student-setup#indicatii-rezolvare-laborator)
-
+#### Pentru mai multe explicatii consultati [acest pdf](https://github.com/sda-ab/lab-09-tasks/blob/master/Laboratorul%209%20-%20Dijkstra.pdf)
 ## Observatii:
   - **teste:**
     - Comanda **make test** va rula toate testele.

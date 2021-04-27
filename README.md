@@ -3,7 +3,7 @@
   </h1>
 
 ## Cerinte:
-1. Implementati o functie care creeaza si populeaza cu date un graf pe baza unei matrice de adiacenta.
+1. Implementati o functie care creeaza matricea de adiacenta (a drumurilor) a unui graf neorientat pe baza datelor de intrare.
 2. Implementati algoritmul Dijkstra folosindu-va de minHeap si de structura DijkstraPath (pentru instantierea & popularea vectorului de distante/predecesori).
 3. Implementati algoritmul Floyd-Warshall. (Complexitate O(n³))
 

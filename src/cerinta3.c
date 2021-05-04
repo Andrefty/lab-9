@@ -5,6 +5,28 @@
  * @param  g: graful dat
  * @retval - Matricea costurilor pentru toate nodurile
  */
-int **Floyd_Warshall(Graph *g){
-
+int **Floyd_Warshall(Graph *g)
+{
+    int **c = (int **)calloc(g->V, sizeof(int *));
+    for (int i = 0; i < g->V; i++)
+    {
+        c[i] = (int *)calloc(g->V, sizeof(int));
+        // for (int j = 0; j < g->V; j++)
+        // {
+        //     c[i][j]=g->mat[i][j];
+        // }
+    }
+    int i, j, z;
+    for (i = 0; i < g->V; i++)
+        for (j = 0; j < g->V; j++)
+            if (g->mat[i][j] != 0)
+                c[i][j] = g->mat[i][j];
+            else
+                c[i][j] = 99999;
+    for (z = 0; z < g->V; z++)
+        for (i = 0; i < g->V; i++)
+            for (j = 0; j < g->V; j++)
+                if (c[i][j] > c[i][z] + c[z][j])
+                    c[i][j] = c[i][z] + c[z][j];
+    return c;
 }

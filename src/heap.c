@@ -13,12 +13,6 @@ MinHeap *create(int capacitate)
 	for (int i = 0; i < h->capacity; i++)
 		h->poz[i] = -1;
 	h->arr = (HeapNode **)calloc(h->capacity, sizeof(HeapNode *));
-	// for (int i = 0; i < h->capacity; i++)
-	// {
-	// 	h->arr[i] = (HeapNode *)calloc(1, sizeof(HeapNode));
-	// 	h->arr[i]->distanta=INT_MAX;
-	// }
-
 	return h;
 }
 
@@ -91,6 +85,7 @@ HeapNode *returnRoot(MinHeap *heap)
 {
 	if (heap->size)
 		return heap->arr[0];
+	return NULL;
 }
 
 /**
@@ -114,6 +109,10 @@ void heapify(MinHeap *heap, int i)
 			min = r;
 		if (min != i)
 		{
+			int tmp = heap->poz[heap->arr[i]->v];
+			heap->poz[heap->arr[i]->v] = heap->poz[heap->arr[min]->v];
+			heap->poz[heap->arr[min]->v] = tmp;
+
 			aux = heap->arr[i];
 			heap->arr[i] = heap->arr[min];
 			heap->arr[min] = aux;
@@ -164,24 +163,26 @@ void insert(MinHeap *heap, HeapNode *x)
 	}
 	else
 	{
-		// heap->poz[x->v]=heap->size;
+		heap->poz[x->v] = heap->size;
 		heap->size++;
 	}
-	for (int z = 0; z < heap->capacity; z++)
-		heap->poz[z] = -1;
+	heap->arr[i] = x;
+	// for (int z = 0; z < heap->capacity; z++)
+	// 	heap->poz[z] = -1;
 	while (i > 0 && x->distanta < heap->arr[(i - 1) / 2]->distanta)
 	{
+		int tmp = heap->poz[heap->arr[i]->v];
+		heap->poz[heap->arr[i]->v] = heap->poz[heap->arr[(i - 1) / 2]->v];
+		heap->poz[heap->arr[(i - 1) / 2]->v] = tmp;
+
 		heap->arr[i] = heap->arr[(i - 1) / 2];
-		// int tmp=heap->poz[heap->arr[i]->v];
-		// heap->poz[heap->arr[i]->v]=heap->poz[heap->arr[(i - 1) / 2]->v];
-		// heap->poz[heap->arr[(i - 1) / 2]->v]=tmp;
 		i = (i - 1) / 2;
 	}
 	heap->arr[i] = x;
-	for (int j = 0; j < heap->size; j++)
-	{
-		heap->poz[heap->arr[j]->v] = j;
-	}
+	// for (int j = 0; j < heap->size; j++)
+	// {
+	// 	heap->poz[heap->arr[j]->v] = j;
+	// }
 }
 
 /**
@@ -196,10 +197,10 @@ void deleteMinHeap(MinHeap **heap)
 	for (int i = 0; i < (*heap)->capacity; i++)
 	{
 		free((*heap)->arr[i]);
-		(*heap)->arr[i]=NULL;
+		(*heap)->arr[i] = NULL;
 	}
 	free((*heap)->arr);
-	(*heap)->arr=NULL;
+	(*heap)->arr = NULL;
 }
 /**
  * TODO: Implementati functia de afisare a unui heap
@@ -224,14 +225,9 @@ HeapNode *deleteNode(MinHeap *heap)
 {
 	HeapNode *cop = returnRoot(heap);
 	heap->poz[heap->arr[0]->v] = -1;
+	heap->poz[heap->arr[(heap->size) - 1]->v] = 0;
 	heap->arr[0] = heap->arr[(heap->size) - 1];
 	(heap->size)--;
 	heapify(heap, 0);
-	for (int z = 0; z < heap->capacity; z++)
-		heap->poz[z] = -1;
-	for (int j = 0; j < heap->size; j++)
-	{
-		heap->poz[heap->arr[j]->v] = j;
-	}
 	return cop;
 }

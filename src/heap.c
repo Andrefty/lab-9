@@ -13,12 +13,12 @@ MinHeap *create(int capacitate)
 	for (int i = 0; i < h->capacity; i++)
 		h->poz[i] = -1;
 	h->arr = (HeapNode **)calloc(h->capacity, sizeof(HeapNode *));
-	for (int i = 0; i < h->capacity; i++)
-	{
-		h->arr[i] = (HeapNode *)calloc(1, sizeof(HeapNode));
-		h->arr[i]->distanta=INT_MAX;
-	}
-	
+	// for (int i = 0; i < h->capacity; i++)
+	// {
+	// 	h->arr[i] = (HeapNode *)calloc(1, sizeof(HeapNode));
+	// 	h->arr[i]->distanta=INT_MAX;
+	// }
+
 	return h;
 }
 
@@ -152,19 +152,36 @@ void resize(MinHeap *heap)
 
 void insert(MinHeap *heap, HeapNode *x)
 {
+
 	int i;
 	if (heap->size == heap->capacity)
 		resize(heap);
 	i = heap->size;
-	heap->size++;
+	if (heap->poz[x->v] != -1)
+	{
+		heap->arr[heap->poz[x->v]]->distanta = x->distanta;
+		i = heap->poz[x->v];
+	}
+	else
+	{
+		// heap->poz[x->v]=heap->size;
+		heap->size++;
+	}
+	for (int z = 0; z < heap->capacity; z++)
+		heap->poz[z] = -1;
 	while (i > 0 && x->distanta < heap->arr[(i - 1) / 2]->distanta)
 	{
 		heap->arr[i] = heap->arr[(i - 1) / 2];
-		heap->poz[i] = heap->poz[(i - 1) / 2];
+		// int tmp=heap->poz[heap->arr[i]->v];
+		// heap->poz[heap->arr[i]->v]=heap->poz[heap->arr[(i - 1) / 2]->v];
+		// heap->poz[heap->arr[(i - 1) / 2]->v]=tmp;
 		i = (i - 1) / 2;
 	}
 	heap->arr[i] = x;
-	heap->poz[i] = x->v-1;
+	for (int j = 0; j < heap->size; j++)
+	{
+		heap->poz[heap->arr[j]->v] = j;
+	}
 }
 
 /**
@@ -174,6 +191,15 @@ void insert(MinHeap *heap, HeapNode *x)
  */
 void deleteMinHeap(MinHeap **heap)
 {
+	free((*heap)->poz);
+	(*heap)->poz = NULL;
+	for (int i = 0; i < (*heap)->capacity; i++)
+	{
+		free((*heap)->arr[i]);
+		(*heap)->arr[i]=NULL;
+	}
+	free((*heap)->arr);
+	(*heap)->arr=NULL;
 }
 /**
  * TODO: Implementati functia de afisare a unui heap
@@ -183,7 +209,11 @@ void deleteMinHeap(MinHeap **heap)
  */
 void printHeap(MinHeap *heap)
 {
-	//nice to have
+	for (int i = 0; i < heap->capacity; i++)
+	{
+		printf("%d ", heap->poz[i]);
+	}
+	printf("\n");
 }
 /**
  * TODO: Implementati functia de stergere a radacinii
@@ -192,4 +222,16 @@ void printHeap(MinHeap *heap)
  */
 HeapNode *deleteNode(MinHeap *heap)
 {
+	HeapNode *cop = returnRoot(heap);
+	heap->poz[heap->arr[0]->v] = -1;
+	heap->arr[0] = heap->arr[(heap->size) - 1];
+	(heap->size)--;
+	heapify(heap, 0);
+	for (int z = 0; z < heap->capacity; z++)
+		heap->poz[z] = -1;
+	for (int j = 0; j < heap->size; j++)
+	{
+		heap->poz[heap->arr[j]->v] = j;
+	}
+	return cop;
 }
